@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Morning Haiku</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+  </head>
+
+  <body>
+    <nav class="navbar has-shadow is-fixed-top" role="navigation" aria-label="main navigation" data-controller="main-nav">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          <%= image_tag("logo.png", height: "112") %>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-main-nav-target="mainNavBurger" data-action="click->main-nav#toggle">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="navbar-menu main-nav-menu" data-main-nav-target="mainNavMenu">
+        <div class="navbar-start main-nav-items">
+          <%= link_to(root_path, class: "navbar-item") do %>
+            <span class="icon is-small">
+              <i class="fas fa-home"></i>
+            </span>
+            <span class="create-new-button-text">Home</span>
+          <% end %>
+          <%= link_to(new_haiku_path, class: "navbar-item") do %>
+            <span class="icon is-small">
+              <i class="fas fa-plus-circle"></i>
+            </span>
+            <span class="create-new-button-text">Create New</span>
+          <% end %>
+
+          <% if @filter_users %>
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Filter
+              </a>
+
+              <div class="navbar-dropdown filter-users">
+                <%= render(partial: "users/filter_users_dropdown", locals: { filtered_user: @filtered_user, filter_users: @filter_users }) %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="navbar-end"></div>
+        <% if @current_user.present? %>
+          <%= link_to("Log out", logout_path, method: :delete, class: "navbar-item button is-small is-danger is-outlined logout-button") %>
+        <% else %>
+          <% if ENV["ENABLE_SIGNUPS"] %>
+            <%= link_to("Sign up", new_user_path, class: "navbar-item button is-small is-success is-outlined signup-button") %>
+          <% end %>
+          <%= link_to("Log in", login_path, class: "navbar-item button is-small is-success login-button") %>
+        <% end %>
+      </div>
+    </nav>
+
+    <div class="page-container">
+      <% if flash[:alert] %>
+        <div class="flash notification is-danger" data-controller="flash">
+          <button class="delete" data-action="click->flash#close"></button>
+          <p class="notice"><%= flash[:alert] %></p>
+        </div>
+      <% elsif flash[:notice] %>
+        <div class="flash notification is-warning" data-controller="flash">
+          <button class="delete" data-action="click->flash#close"></button>
+          <p class="notice"><%= flash[:notice] %></p>
+        </div>
+      <% elsif flash[:success] %>
+        <div class="flash notification is-success" data-controller="flash">
+          <button class="delete" data-action="click->flash#close"></button>
+          <p class="notice"><%= flash[:success] %></p>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>

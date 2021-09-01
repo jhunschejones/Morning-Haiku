@@ -1,0 +1,15 @@
+<% filter_users.each do |user| %>
+  <% if user == filtered_user %>
+    <a class="navbar-item" data-reflex="click->HaikuReflex#unfilter" data-filter-user-id="<%= user.hashid %>">
+      <%= user.name %>
+      &nbsp;
+      <span class="icon is-small">
+        <i class="fas fa-check"></i>
+      </span>
+    </a>
+  <% else %>
+    <a class="navbar-item" data-reflex="click->HaikuReflex#filter" data-filter-user-id="<%= user.hashid %>">
+      <%= user.name %>
+    </a>
+  <% end %>
+<% end %>

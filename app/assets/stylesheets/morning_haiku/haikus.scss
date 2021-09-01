@@ -1,0 +1,39 @@
+.new-haiku,
+.edit-haiku {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  .new-haiku-form,
+  .edit-haiku-form {
+    padding: 12px;
+    width: 100%;
+    max-width: 450px;
+  }
+}
+
+.haikus-list {
+  padding: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  .haiku-card {
+    margin: 6px;
+    display: flex;
+    background-color: $background-white;
+    border-radius: 5px;
+    box-shadow: $shallow-box-shadow;
+    line-height: 1.45em;
+    position: relative;
+    .haiku-card-link {
+      color: $dark-text-color;
+      &:hover { color: $dark-text-color; }
+      padding: 16px;
+      .haiku-author {
+        line-height: 1.3em;
+      }
+      .haiku-body {
+        margin-top: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+<div class="haiku-card">
+  <%= link_to(edit_haiku_path(haiku), class: "haiku-card-link") do %>
+    <p class="haiku-title">"<%= haiku.title %>"</p>
+    <p class="haiku-author has-text-grey-light">
+      <small>by <%= haiku.user.name %></small>
+    </p>
+    <div class="haiku-body">
+      <% haiku.body.split("\n").each do |line| %>
+        <p class="haiku-line"><%= line %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,48 @@
+<div class="signup-form-container" data-controller="signup">
+  <div class="signup-form">
+    <br/>
+    <h2 class="title is-4">Sign up</h2>
+
+    <%= form_with(url: users_path) do |f| %>
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" name="user[name]" type="text" placeholder="Name">
+          <span class="icon is-small is-left">
+            <%= fa_icon("user", class: "fas") %>
+          </span>
+        </p>
+      </div>
+
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" name="user[email]" type="email" placeholder="Email">
+          <span class="icon is-small is-left">
+            <%= fa_icon("envelope", class: "fas") %>
+          </span>
+        </p>
+      </div>
+
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" name="user[password]" type="password" placeholder="Password" data-signup-target="password" data-action="change->signup#validatePassword" autocomplete="off">
+          <span class="icon is-small is-left">
+            <%= fa_icon("lock", class: "fas") %>
+          </span>
+        </p>
+      </div>
+
+      <div class="field">
+        <p class="control has-icons-left">
+          <input class="input" name="user[password_confirmation]" type="password" placeholder="Password confirmation" data-signup-target="passwordConfirmation" data-action="keyup->signup#validatePassword" autocomplete="off">
+          <span class="icon is-small is-left">
+            <%= fa_icon("lock", class: "fas") %>
+          </span>
+        </p>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: "button is-info" %>
+      </div>
+    <% end %>
+  </div>
+</div>

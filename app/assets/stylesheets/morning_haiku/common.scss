@@ -1,0 +1,17 @@
+html {
+  background-color: $background-gray;
+  color: $dark-text-color;
+}
+
+.main-nav-menu {
+  .create-new-button-text {
+    padding-left: 6px;
+  }
+}
+
+.page-container {
+  padding-top: 52px;
+  .flash {
+    margin-bottom: 0px;
+  }
+}

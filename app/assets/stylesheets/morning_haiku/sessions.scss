@@ -1,0 +1,25 @@
+.login-form-container {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  .login-form {
+    .title {
+      font-weight: normal;
+      margin-bottom: 12px;
+    }
+    max-width: 600px;
+    width: 100%;
+  }
+}
+
+.logout-button,
+.login-button,
+.signup-button {
+  display: flex;
+  max-width: 72px;
+  margin: 12px 12px 8px -2px;
+  @media screen and (max-width: $navbar-breakpoint) {
+    margin-top: 5px;
+    margin-left: 16px;
+  }
+}
